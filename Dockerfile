@@ -25,7 +25,7 @@ ENV PATH $PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
 
 ## spark-env.sh config
 RUN cp $SPARK_HOME/conf/spark-env.sh.template $SPARK_HOME/conf/spark-env.sh \
-    && echo SPARK_WORKER_CORES=3 >> $SPARK_HOME/conf/spark-env.sh \
+    && echo SPARK_WORKER_CORES=7 >> $SPARK_HOME/conf/spark-env.sh \
     && echo SPARK_WORKER_MEMORY=25G >> $SPARK_HOME/conf/spark-env.sh \
     && echo ARROW_PRE_0_15_IPC_FORMAT=1 >> $SPARK_HOME/conf/spark-env.sh \
     && echo export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath) >> $SPARK_HOME/conf/spark-env.sh \
