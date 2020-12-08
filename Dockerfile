@@ -36,8 +36,7 @@ RUN cp $SPARK_HOME/conf/spark-env.sh.template $SPARK_HOME/conf/spark-env.sh \
     && echo export PYSPARK_DRIVER_PYTHON=/usr/bin/python3 >> $SPARK_HOME/conf/spark-env.sh
 
 ## spark-defaults config & slaves
-RUN mkdir /tmp/spark-events \
-    && $SPARK_HOME/sbin/start-history-server.sh
+RUN mkdir /tmp/spark-events
 
 ADD workers $HADOOP_HOME/etc/hadoop/workers
 RUN cp $HADOOP_HOME/etc/hadoop/workers $SPARK_HOME/conf/slaves
@@ -69,12 +68,5 @@ COPY jar/index2dict_2.11-0.1.jar /usr/local/spark/jars/index2dict_2.11-0.1.jar
 RUN chown root.root /usr/local/spark/jars/index2dict_2.11-0.1.jar \
     && chmod 700 /usr/local/spark/jars/index2dict_2.11-0.1.jar
 
-COPY bootstrap.sh /etc/bootstrap.sh
-RUN chown root.root /etc/bootstrap.sh
-RUN chmod 700 /etc/bootstrap.sh
-
-
 # Spark Web UI, History Server Port
 EXPOSE 7077 8080 9797 9898 18080
-
-ENTRYPOINT ["/etc/bootstrap.sh"]
