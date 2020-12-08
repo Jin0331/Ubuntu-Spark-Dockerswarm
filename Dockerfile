@@ -68,8 +68,7 @@ COPY jar/index2dict_2.11-0.1.jar /usr/local/spark/jars/index2dict_2.11-0.1.jar
 RUN chown root.root /usr/local/spark/jars/index2dict_2.11-0.1.jar \
     && chmod 700 /usr/local/spark/jars/index2dict_2.11-0.1.jar
 
-# RUN openssh-server
-RUN service ssh start
-
 # Spark Web UI, History Server Port
 EXPOSE 7077 8080 9797 9898 18080
+
+ENTRYPOINT service ssh start && /bin/bash
